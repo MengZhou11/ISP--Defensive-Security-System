@@ -5,7 +5,6 @@ Note:
     Also you need to give it an application to run.
     python repy.py restrictions.default encasementlib.r2py [security_layer].r2py [attack_program].r2py 
     python3 repy.py encasementlib.r2py reference_monitor_mz3043.r2py mz3043_case.r2py
-    
 """ 
     
 TYPE="type"
@@ -32,8 +31,8 @@ class ABFile():
       self.Afile.writeat('SE',0)
     else:
     # if create is false, just open the files
-    	self.Afile = openfile(self.Afn, create)
-    	self.Bfile = openfile(self.Bfn, create)
+      self.Afile = openfile(self.Afn, create)
+      self.Bfile = openfile(self.Bfn, create)
     # create two locks for AB files
     self.Afile.filelock = createlock()
     self.Bfile.filelock = createlock()
@@ -57,12 +56,12 @@ class ABFile():
     self.Bfile.filelock.acquire(True)
     # if file b is valid
     if self.Bfile.readat(None,0).startswith("S") and self.Bfile.readat(None,0).endswith("E"):  
-    	dataCopyB = self.Bfile.readat(None, 0)
-    	self.Afile.writeat(dataCopyB, 0)
+      dataCopyB = self.Bfile.readat(None, 0)
+      self.Afile.writeat(dataCopyB, 0)
     else: 
     # if file b is not valid
-    	dataCopyA = self.Bfile.readat(None, 0)
-    	self.Bfile.writeat(dataCopyA, 0)
+      dataCopyA = self.Afile.readat(None, 0)
+      self.Bfile.writeat(dataCopyA, 0)
         	
     self.Afile.close()
     self.Bfile.close()
